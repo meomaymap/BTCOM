@@ -155,7 +155,12 @@
         height: 100vh;
     }
 
-
+    .Xacnhan {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 40px;
+    }
 </style>
 </head>
 
@@ -283,8 +288,11 @@
             document.getElementById('myOverlay').style.display='block';  
 			document.getElementById('myFrame').src = "https://meomaymap.github.io/BTCOM/testPopup.html";
         }
-
-	</script>
+	
+	function Close_chitiet(elmnt) {
+            document.getElementById('myOverlay').style.display='none';  
+        }
+    </script>
 
     <header class="w3-top w-blue w3-theme">
         <h5 class="w3-bar-item">Sản phẩm tiêu dùng</h5>
@@ -293,6 +301,7 @@
     <div id="myOverlay" class="overlay">
   
         <div class="overlay-content">
+	  <div class="Xacnhan" onclick="Close_chitiet(this)">OK</div>
           <iframe class="iFrame_content" id="myFrame"></iframe>
         </div>
     </div>
