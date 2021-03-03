@@ -153,6 +153,7 @@
     .iFrame_content {
         width: 100vw;
         height: 100vh;
+        border: none;
     }
 
     .Xacnhan {
@@ -302,8 +303,31 @@
     <div id="myOverlay" class="overlay">
   
         <div class="overlay-content">
-	  <div class="Xacnhan" onclick="Close_chitiet(this)">OK</div>
-          <iframe class="iFrame_content" id="myFrame"></iframe>
+
+
+            <div class="w3-cell-row" style="margin-top: 50px;">
+
+					
+					<div class="w3-cell" style="width: 50%; text-align: right; padding: 10px;">
+
+                        <div class="w3-tag w3-round w3-green">
+							<div class="Q09">Đồng ý</div>
+						</div>
+
+					</div>
+					<div class="w3-cell" style="width: 50%; text-align: left; padding: 10px;" onclick="Close_chitiet(this)">
+
+							<div class="w3-tag w3-round w3-red">
+								<div class="Q09">Hủy bỏ</div>
+							</div>
+
+					</div>
+
+
+				
+			</div>
+
+            <iframe class="iFrame_content" id="myFrame"></iframe>
         </div>
     </div>
       
