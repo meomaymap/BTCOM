@@ -32,6 +32,7 @@
     .center {width: 20%; margin:auto;}
 
     .badge-notify{position:relative; top: -1vw; left: -0.7vw;}
+	.badge-notify-1{position:relative; top: -1.5vw; text-align: left;}
 
     .Q01 {font-size: 0.8vw; font-style: italic; font-weight: bold; text-align: center;}
     .Q02 {width:100%; margin-left:0.5vw; margin-right:1vw;}
@@ -193,12 +194,12 @@
 
     .overlay-content {
         position: relative;
-        top: 0%;
+        top: 0;
         height: 100vh;
         width: 100vw;
         text-align: center;
-        margin-top: 30px;
-        margin: auto;
+        //margin-top: 10px;
+        margin: 0;
     }
 
     .iFrame_content {
@@ -248,31 +249,31 @@
         function NapData() {
             var data = [
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0209B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
-                        "66", "99.000.000","pink"],
+                        "0209B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "VB 123 - (01/03/2020-01/04/2020) -16%",
+                        "66", "99,000,000","pink", "80,000"],
                         
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0210B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
-                        "66", "99.000.000","lightgreen"],
+                        "0210B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "VB 123 - (01/03/2020-01/04/2020) -16%",
+                        "66", "99.000.000","lightgreen", "80,000"],
 
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0211B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
-                        "0", "0","orange"],
+                        "0211B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "VB 123 - (01/03/2020-01/04/2020) -16%",
+                        "0", "0","orange", "0"],
 
                         ["Hết hàng", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0212B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
-                        "66", "99.000.000","palevioletred"],
+                        "0212B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "VB 123 - (01/03/2020-01/04/2020) -16%",
+                        "66", "99.000.000","palevioletred", "80,000"],
 
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0213B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
-                        "66", "99.000.000","yellowgreen"],
+                        "0213B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "VB 123 - (01/03/2020-01/04/2020) -16%",
+                        "66", "99.000.000","yellowgreen", "80,000"],
                     ];
             
             var text = "";        
             for (var i = 0; i < data.length; i++) {
 
                 text += "<div class='column' id='" + data[i][2] + "' onclick='chitiet(this)''>";		//0
-                text +=     "<div class='w3-cell-row' style='background-color: " + data[i][9] + ";'>";	//1
+                text +=     "<div class='w3-cell-row w3-round-large' style='background-color: " + data[i][9] + ";'>";	//1
                 text +=         "<div class='w3-cell w3-cell-middle' style='width:35%;'>";				//1.1
                 text +=             "<div class='w3-cell-row'>";										//1.1.1
                 text +=                 "<div class='w3-tag w3-round w3-black'>";						//1.1.1.1
@@ -314,13 +315,18 @@
                 text +=                 	"</div>";
                 text +=                 	"<div class='w3-cell'>";									//1.2.3.1.2
                 text +=                     	"<div class='w3-tag w3-round w3-blue badge-notify'>";	//1.2.3.1.2.1
-                text +=                         	"<div class='Q14'>" + data[i][7] + "</div>";		//1.2.3.1.2.1.1
+                text +=                         	"<div class='Q14'>" + numberWithCommas(str2num(data[i][7])) + "</div>";		//1.2.3.1.2.1.1
                 text +=                     	"</div>";
                 text +=                 	"</div>";
                 text +=             	"</div>";
                 text +=             	"<div class='w3-cell w3-cell-right w3-cell-middle'>";			//1.2.3.2
                 text +=                 	"<div class='w3-tag w3-round w3-blue'>";					//1.2.3.2.1
-                text +=                     	"<div class='Q15'>" + data[i][8] + "</div>";			//1.2.3.2.1.1
+                text +=                     	"<div class='Q15'>" + numberWithCommas(str2num(data[i][8])) + "</div>";			//1.2.3.2.1.1
+                text +=                 	"</div>";
+                text +=             	"</div>";
+                text +=                 "<div class='w3-cell w3-cell-right w3-cell-middle' style='display: none;'>";			//1.2.3.3
+                text +=                 	"<div class='w3-tag w3-round w3-blue'>";					//1.2.3.3.1
+                text +=                     	"<div class='Q15'>" + numberWithCommas(str2num(data[i][10])) + "</div>";			//1.2.3.3.1.1
                 text +=                 	"</div>";
                 text +=             	"</div>";
                 text +=             "</div>";
@@ -365,8 +371,9 @@
 				document.getElementById('Qid04').innerHTML = GetElement(elmnt.id,[1,2,2,1,1]).innerHTML;
 				document.getElementById('Qid05').innerHTML = GetElement(elmnt.id,[1,2,2,1,2]).innerHTML;
 				document.getElementById('Qid06').innerHTML = GetElement(elmnt.id,[1,2,2,1,3]).innerHTML;
-				document.getElementById('Qid14').innerHTML = GetElement(elmnt.id,[1,2,3,1,2,1,1]).innerHTML;
-				document.getElementById('Qid15').innerHTML = GetElement(elmnt.id,[1,2,3,2,1,1]).innerHTML;
+				document.getElementById('Qid17').innerHTML = GetElement(elmnt.id,[1,2,3,1,2,1,1]).innerHTML;
+				document.getElementById('Qid18').innerHTML = GetElement(elmnt.id,[1,2,3,2,1,1]).innerHTML;
+                document.getElementById('Qid19').innerHTML = GetElement(elmnt.id,[1,2,3,3,1,1]).innerHTML;
 				
 				document.getElementById('myOverlay').style.display='block'; 
 			}
@@ -374,33 +381,47 @@
 		
 		function loaithembot(elmnt) {
 			document.getElementById('Qid07').style.color = "white";
-			document.getElementById('Qid08').style.color = "white";
+			document.getElementById('Qid12').style.color = "white";
 			elmnt.style.color = "green";
 		}
 		
 		function SL(elmnt) {
-			var x1, x2;
-			x1 = 0;
-			x2 = 0;
-			if (document.getElementById('Qid07').style.color == "green") {
-				x1 = 1;
-			}
-			if (document.getElementById('Qid08').style.color == "green") {
-				x2 = -1;
-			}
-			
-			var slThem = str2num(elmnt.innerHTML);
-			var slHienhuu = str2num(document.getElementById('Qid14').innerHTML);
-			
-			
-			var soluong = slHienhuu + x1*slThem + x2*slThem;
-			if (soluong<0) {soluong=0;}
-			document.getElementById('Qid14').innerHTML = numberWithCommas(soluong);
+			var el = document.getElementById('Qid07');
+            
+            if (elmnt.innerHTML== "x") {
+                var soluong = 0;
+                loaithembot(el);
+            } else {
+                var x1, x2;
+                x1 = 0;
+                x2 = 0;
+                if (document.getElementById('Qid07').style.color == "green") {
+                    x1 = 1;
+                }
+                if (document.getElementById('Qid12').style.color == "green") {
+                    x2 = -1;
+                }
+                
+                var slThem = str2num(elmnt.innerHTML);
+                var slHienhuu = str2num(document.getElementById('Qid17').innerHTML);
+                
+                
+                var soluong = slHienhuu + x1*slThem + x2*slThem;
+                if (soluong <= 0) {
+                    soluong = 0;
+                    loaithembot(el);
+                }
+            }
+
+			document.getElementById('Qid17').innerHTML = numberWithCommas(soluong);
 			
 			var dongia1 = str2num(document.getElementById('Qid04').innerHTML);
 			var dongia2 = str2num(document.getElementById('Qid05').innerHTML);
 			
-			document.getElementById('Qid15').innerHTML = numberWithCommas(soluong*dongia1);
+			document.getElementById('Qid18').innerHTML = numberWithCommas(soluong*dongia1);
+            document.getElementById('Qid19').innerHTML = numberWithCommas(soluong*dongia2);
+
+
 		}
 	
 	function Close_chitiet() {
@@ -431,11 +452,12 @@
 		function Dongy_chitiet() {
             //document.getElementById('myOverlay').style.display='none'; 
 			
-			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,1,2,1,1]).innerHTML = document.getElementById('Qid14').innerHTML;
-			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,2,1,1]).innerHTML = document.getElementById('Qid15').innerHTML;
+			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,1,2,1,1]).innerHTML = document.getElementById('Qid17').innerHTML;
+			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,2,1,1]).innerHTML = document.getElementById('Qid18').innerHTML;
+			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,2,1,1]).innerHTML = document.getElementById('Qid19').innerHTML;
 			
 			var bien;
-			if (document.getElementById('Qid14').innerHTML != "0") {
+			if (document.getElementById('Qid17').innerHTML != "0") {
 				bien = "block";
 			} else {
 				bien = "none";
@@ -457,7 +479,7 @@
         <div class="overlay-content">
 
 
-            <div class="w3-cell-row" style="margin-top: 50px;">
+            <div class="w3-cell-row" style="margin-top: 0;">
 
 					
 					<div class="w3-cell" style="width: 50%; text-align: right; padding: 10px;" onclick="Dongy_chitiet()">
@@ -482,7 +504,7 @@
             <div class="w3-cell-row center">
 		
                 <div>
-                    <div class="w3-cell w3-cell-middle w3-orange" style="width:100%;">
+                    <div class="w3-cell w3-cell-middle w3-orange w3-round-xlarge" style="width:100%; padding: 5px;">
                         <div class="w3-cell-row">
                             <div style="padding:0.2vw; width: 100%;">
                                 <div class="w3-tag w3-round w3-white w3-border w3-border-black" style="padding:3px; width: 100%;">
@@ -494,70 +516,99 @@
                         </div>
                         <div class="w3-cell-row w3-cell-middle">
                             <img class="w3-circle" id="Qid02" src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" style="width:100%; margin-right:0.5vw">
-                        </div>
-                        <div class="w3-cell-row">
+							<div class="badge-notify-1">
                                 <div class="w3-tag w3-round w3-black">
                                     <div class="Q17" id="Qid03">0209B</div>
                                 </div>
-                        </div>
+							</div>
+						</div>
+                        
                         <div class="w3-cell-row">
-                        <div style="padding-left:1.3vw; padding-top:0.6vw; padding-right:0.2vw; width: 100%;">
-                            
+							<div class="w3-cell" style="width: 50%; text-align: left;">
                                 <div class="Q18" id="Qid04">(+VAT) 89.000 đ/can</div>
+                            </div>
+							<div class="w3-cell" style="width: 50%; text-align: left;">
                                 <div class="Q19" id="Qid05">(CBCNV: 76.000)</div>
-        
-                                <div class="Q20" id="Qid06">(01/03/2020-01/04/2020) - giảm 16%</div>
                             </div>
                         </div>
-                        <div class="w3-cell-row" >
-                            <div class="w3-cell Q25" style="width: 5%; padding: 0.3vw;">
+						<div class="w3-cell-row">
+							<div class="Q20" id="Qid06">(01/03/2020-01/04/2020) - giảm 16%</div>
+                        </div>
+                        <div class="w3-cell-row" style="border-top: 1px solid white">
+                            <div class="w3-cell Q25" style="width: 20%; padding: 0.3vw;">
         
                                 <i class="fa fa-plus-square Q21" id="Qid07" style="color:green;" onclick="loaithembot(this)"></i>
         
                             </div>
-                            <div class="w3-cell Q25" style="width: 5%;">
-        
-                                <i class="fa fa-minus-square Q21" id="Qid08" style="color:white;" onclick="loaithembot(this)"></i>
-        
-                            </div>
+
                             
-                            <div class="w3-cell Q25" style="width: 18%;">
+                            <div class="w3-cell Q25" style="width: 20%;">
         
-                                <div class="w3-tag w3-round w3-blue" style="width: 100%;">
-                                    <div class="Q22" id="Qid09"  onclick="SL(this)">1</div>
+                                <div class="w3-tag w3-round w3-black" style="width: 100%;">
+                                    <div class="Q22" id="Qid08"  onclick="SL(this)">x</div>
                                 </div>
         
                             </div>
-                            <div class="w3-cell Q25" style="width: 18%;">
+                            <div class="w3-cell Q25" style="width: 20%;">
         
                                 <div class="w3-tag w3-round w3-red" style="width: 100%;">
-                                    <div class="Q22" id="Qid10" onclick="SL(this)">5</div>
+                                    <div class="Q22" id="Qid09" onclick="SL(this)">1</div>
                                 </div>
         
                             </div>
-                            <div class="w3-cell Q25" style="width: 18%;">
+                            <div class="w3-cell Q25" style="width: 20%;">
         
                                 <div class="w3-tag w3-round w3-purple" style="width: 100%;">
-                                    <div class="Q22" id="Qid11" onclick="SL(this)">10</div>
+                                    <div class="Q22" id="Qid10" onclick="SL(this)">2</div>
                                 </div>
         
                             </div>
-                            <div class="w3-cell Q25" style="width: 18%;">
+                            <div class="w3-cell Q25" style="width: 20%;">
         
                                 <div class="w3-tag w3-round w3-brown" style="width: 100%;">
-                                    <div class="Q22" id="Qid12" onclick="SL(this)">50</div>
-                                </div>
-        
-                            </div>
-                            <div class="w3-cell Q25" style="width: 18%;">
-        
-                                <div class="w3-tag w3-round w3-pink" style="width: 100%;">
-                                    <div class="Q22" id="Qid13" onclick="SL(this)">100</div>
+                                    <div class="Q22" id="Qid11" onclick="SL(this)">5</div>
                                 </div>
         
                             </div>
                         </div>
-                        <div class="w3-cell-row">
+						<div class="w3-cell-row" >
+                            <div class="w3-cell Q25" style="width: 20%;">
+        
+                                <i class="fa fa-minus-square Q21" id="Qid12" style="color:white;" onclick="loaithembot(this)"></i>
+        
+                            </div>
+                            
+                            <div class="w3-cell Q25" style="width: 20%;">
+        
+                                <div class="w3-tag w3-round w3-blue" style="width: 100%;">
+                                    <div class="Q22" id="Qid13"  onclick="SL(this)">10</div>
+                                </div>
+        
+                            </div>
+                            <div class="w3-cell Q25" style="width: 20%;">
+        
+                                <div class="w3-tag w3-round w3-lime" style="width: 100%;">
+                                    <div class="Q22" id="Qid14" onclick="SL(this)">20</div>
+                                </div>
+        
+                            </div>
+                            <div class="w3-cell Q25" style="width: 20%;">
+        
+                                <div class="w3-tag w3-round w3-aqua" style="width: 100%;">
+                                    <div class="Q22" id="Qid15" onclick="SL(this)">50</div>
+                                </div>
+        
+                            </div>
+                            <div class="w3-cell Q25" style="width: 20%;">
+        
+                                <div class="w3-tag w3-round w3-amber" style="width: 100%;">
+                                    <div class="Q22" id="Qid16" onclick="SL(this)">100</div>
+                                </div>
+        
+                            </div>
+
+                        </div>
+                        <div class="w3-cell-row" style="border-top: 2px solid white;">
                         <div style="padding-left:0.6vw; padding-top:0.6vw; width: 100%;">
                             
                             <div class="w3-cell" style="width: 20%">
@@ -568,13 +619,18 @@
                             <div class="w3-cell" style="width: 30%">
         
                                     <div class="w3-tag w3-round w3-white">
-                                        <div class="Q24" id="Qid14">66</div>
+                                        <div class="Q24" id="Qid17">66</div>
                                     </div>
         
                             </div>
                             <div class="w3-cell" style="width: 50%">
-                                <div class="w3-tag w3-round w3-white">
-                                    <div class="Q24" id="Qid15">99.000</div>
+                                <div class="w3-tag w3-round w3-green">
+                                    <div class="Q24" id="Qid18">99.000</div>
+                                </div>
+                            </div>
+							<div class="w3-cell" style="width: 50%">
+                                <div class="w3-tag w3-round w3-cyan">
+                                    <div class="Q24" id="Qid19">99.000</div>
                                 </div>
                             </div>
                         </div>
