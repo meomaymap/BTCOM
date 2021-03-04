@@ -27,7 +27,7 @@
 
     /* Create four equal columns that floats next to each other */
     .column {float: left; width: 25%; padding: 5px;}
-    .row {padding-top:5px; padding-bottom: 40px;}
+    .row {padding-top:5px; padding-bottom: 20px;}
 
     .center {width: 20%; margin:auto;}
 
@@ -248,23 +248,23 @@
         function NapData() {
             var data = [
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0209B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) - - giảm 16%",
+                        "0209B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
                         "66", "99.000.000","pink"],
                         
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0210B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) - - giảm 16%",
+                        "0210B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
                         "66", "99.000.000","lightgreen"],
 
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0211B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) - - giảm 16%",
-                        "66", "99.000.000","orange"],
+                        "0211B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
+                        "0", "0","orange"],
 
-                        ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0212B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) - - giảm 16%",
+                        ["Hết hàng", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
+                        "0212B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
                         "66", "99.000.000","palevioletred"],
 
                         ["Có sẵn", "https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp", 
-                        "0213B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) - - giảm 16%",
+                        "0213B", "Kem rửa tay LE FLIRT DU PROVENCE hương vị Cam- Mật ong 520gr", "(+VAT) 89.000 đ/can", "(CBCNV: 76.000)", "(01/03/2020-01/04/2020) -16%",
                         "66", "99.000.000","yellowgreen"],
                     ];
             
@@ -334,8 +334,19 @@
             }        
             document.getElementById('Data').innerHTML = text;
 			
+			for (var i = 0; i < data.length; i++) {
+				if (data[i][7]=="0") {
+					Display_Sl(data[i][2],"none", [1,2,3,1,2,1,1]);
+					Display_Sl(data[i][2],"none", [1,2,3,2,1,1]);
+				}
+			}
+			
         }
-
+		
+		function Display_Sl(idSL,bienso, vitri) {
+			GetElement(idSL,vitri).style.display = bienso;
+		}
+		
         function chitiet(elmnt) {
              
 			//document.getElementById('myFrame').src = "https://meomaymap.github.io/BTCOM/Detail_SP.html";
@@ -422,6 +433,15 @@
 			
 			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,1,2,1,1]).innerHTML = document.getElementById('Qid14').innerHTML;
 			GetElement(document.getElementById('Qid03').innerHTML,[1,2,3,2,1,1]).innerHTML = document.getElementById('Qid15').innerHTML;
+			
+			var bien;
+			if (document.getElementById('Qid14').innerHTML != "0") {
+				bien = "block";
+			} else {
+				bien = "none";
+			}
+			Display_Sl(document.getElementById('Qid03').innerHTML, bien, [1,2,3,1,2,1,1]);
+			Display_Sl(document.getElementById('Qid03').innerHTML, bien, [1,2,3,2,1,1]);
 			Close_chitiet();
         }
     </script>
@@ -576,7 +596,9 @@
     </div>
 
     <footer class="w3-bottom w3-theme w3-margin-top">
-    <h5>Footer</h5>
+		<marquee width="100%" direction="left">
+			Đây là chương trình Demo website bán hàng tiêu dùng BTCOM.
+		</marquee>
     </footer>
 
 </body>
