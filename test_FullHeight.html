@@ -73,8 +73,13 @@
         }, { passive: false });
         
         document.addEventListener("touchstart", function(e){
-            e.preventDefault();
+            if(event.touches.length > 1){
+                //the event is multi-touch
+                //you can then prevent the behavior
+                event.preventDefault()
+            }
         },{passive: false});
+        
     </script>
     
     <div class="module">
