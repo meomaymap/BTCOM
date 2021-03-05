@@ -103,12 +103,12 @@
                 //the event is multi-touch
                 //you can then prevent the behavior
                 event.preventDefault()
-            } else {
-
-                openFullscreen();
-            }
+            } 
         },{passive: false});
-
+        
+        document.addEventListener('touchstart', event => {
+            openFullscreen();
+        });
 
         var elem = document.documentElement;
         function openFullscreen() {
