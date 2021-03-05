@@ -106,8 +106,18 @@
             } 
         },{passive: false});
         
+        /*
         document.addEventListener('touchmove', event => {
             openFullscreen();
+        });
+        */
+
+        document.addEventListener("touchstart", function(e){
+            if(event.touches.length = 1){
+                //the event is multi-touch
+                //you can then prevent the behavior
+                openFullscreen();
+            } 
         });
 
         var elem = document.documentElement;
