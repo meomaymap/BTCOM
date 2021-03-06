@@ -9,6 +9,7 @@
     <style>
         * {
             touch-action: manipulation;
+
         }
         
         html, body {
@@ -70,6 +71,7 @@
 			left: 0;
 			bottom: 0;
 			width: 100%;
+			height: 5vh;
 			background-color: green;
 			color: white;
 			text-align: center;
@@ -149,7 +151,7 @@
                 //you can then prevent the behavior
                 openFullscreen();
             //} 
-        });
+        },{passive: true});
 
         var elem = document.documentElement;
         function openFullscreen() {
