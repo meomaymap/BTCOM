@@ -3,6 +3,8 @@
 
 <head>
     <meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1.0, initial-scale=1">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <style>
         * {
@@ -30,7 +32,7 @@
             height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
             height: calc(var(--vh, 1vh) * 100);
             margin: 0 auto;
-            max-width: 30%;
+            max-width: 100%;
             overflow: auto;
             position: relative;
         }
@@ -51,6 +53,34 @@
             background-color: #F73859;
             color: #F1D08A;
         }
+		
+		div.header {
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 5vh;
+			background-color: yellow;
+			color: black;
+			text-align: center;
+		}
+		
+		div.bottom {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: green;
+			color: white;
+			text-align: center;
+		}
+		
+		div.sticky {
+			position: -webkit-sticky;
+			position: sticky;
+			top: 5vh;
+
+		}
     </style>
 </head>
 
@@ -91,12 +121,9 @@
                 event.preventDefault();
             }
         }
-
         document.addEventListener("keydown", stopKeyZoom);
         document.addEventListener('mousewheel', stopWheelZoom);
         document.addEventListener('DOMMouseScroll', stopWheelZoom);
-
-
         document.addEventListener('dblclick', (event) => {
             event.preventDefault()
         }, { passive: false });
@@ -138,6 +165,18 @@
     </script>
     
     <div class="module">
+		<div class="header">Tiêu đề cố định</div>
+		<div class="bottom">Footer cố định</div>
+		<div class="sticky">
+			<div class="w3-cell-row">
+				<div class="w3-container w3-red w3-cell">
+					<p>Hello W3.CSS Layout.</p>
+				</div>
+				<div class="w3-container w3-green w3-cell">
+					<p>Hello W3.CSS Layout.</p>
+				</div>
+			</div>
+		</div>
         <div class="module__item">20%</div>
         <div class="module__item">40%</div>
         <div class="module__item">60%</div>
