@@ -157,16 +157,11 @@
 			if (!isInFullScreen) {
 				if (elem.requestFullscreen) {
 					elem.requestFullscreen();
-				} 
-				if (elem.mozRequestFullScreen) {
+				} if (elem.mozRequestFullScreen) {
 					elem.mozRequestFullScreen();
-				} 
-				if (elem.webkitRequestFullScreen) {		/* Safari */
+				} else if (elem.webkitRequestFullScreen) {
 				   elem.webkitRequestFullScreen();
-				} else {
-				   elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-				}
-				if (elem.msRequestFullscreen) {			/* IE11 */
+				} else if (elem.msRequestFullscreen) {
 					elem.msRequestFullscreen();
 				}
 			}
