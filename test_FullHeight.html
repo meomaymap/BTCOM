@@ -156,21 +156,49 @@
 
         var elem = document.documentElement;
         function openFullscreen() {
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
-                elem.msRequestFullscreen();
-            }
+            
+			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+			(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+			(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+			(document.msFullscreenElement && document.msFullscreenElement !== null);
+
+
+			if (!isInFullScreen) {
+				if (element.requestFullscreen) {
+					element.requestFullscreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				} else if (element.webkitRequestFullScreen) {
+				   element.webkitRequestFullScreen();
+				} else if (element.msRequestFullscreen) {
+					element.msRequestFullscreen();
+				}
+			}
+			
+			
+			//if (elem.requestFullscreen) {
+            //    elem.requestFullscreen();
+            //} else if (elem.webkitRequestFullscreen) { /* Safari */
+            //    elem.webkitRequestFullscreen();
+            //} else if (elem.msRequestFullscreen) { /* IE11 */
+            //    elem.msRequestFullscreen();
+            //}
+			
         }
+		
+		
+		
+		
 
 
 		  function preventPullToRefresh(element) {
 			var prevent = false;
 
 			document.querySelector(element).addEventListener('touchstart', function(e){
-			  if (e.touches.length !== 1) { return; }
+			  if (e.touches.length !== 1) { 
+				  openFullscreen();
+				  return; 
+			  }
 
 			  var scrollY = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 			  prevent = (scrollY === 0);
