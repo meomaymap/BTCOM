@@ -252,21 +252,22 @@ html, body {
             var col = [2,4];
             for (k=0; k<col.length; k++) {
                 if (ww <= 1680/col[k]) {
-                    value1 = col[k]*100/MaxNumCol;
-                    VQ01a1 = 8*col[k];
+                    setStyleAllClass (el,"width",col[k]*100/MaxNumCol + '%');
+                    setStyleAllClass (el,"font-size",8*col[k] + "vw");
                 }
             }
 
-            for (var i=0; i < el.length; i++) {
-                setStyle(el[i], {'width': value1 + '%'});
-            }
+
             
-            for (var i=0; i < item_el.length; i++) {
-                setStyle(item_el[i], {'font-size': VQ01a1 + "vw"});
-            }
+            
+
         }
 
-        
+        function setStyleAllClass (el,x1,x2) {
+            for (var i=0; i < el.length; i++) {
+                setStyle(el[i], {x1: x2});
+            }
+        }
         
         function preventPullToRefresh(element) {
 			var prevent = false;
