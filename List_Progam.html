@@ -215,7 +215,6 @@ html, body {
 
         function checkMediaQuery() {
             var el = ECN_Array(NameClassCol);   
-            var el = ECN_Array(NameClassCol);   
             for (j=MaxNumCol; j>MinNumCol; j--) {
                 if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
                     var value = [100/j];
@@ -226,20 +225,18 @@ html, body {
                 }
             }
 
-            
+            var value1;
             if (ww <= 1680/2) {
-                    var value1 = 4*100/8;
-                    for (var i=0; i < el.length; i++) {
-                        setStyle(el[i], {'width': value1 + '%'});
-                    }
+                    value1 = 2*100/8;
             }
             
             if (ww <= 1680/4) {
-                    var value1 = 2*100/8;
-                    for (var i=0; i < el.length; i++) {
+                    value1 = 4*100/8;     
+            }
+
+            for (var i=0; i < el.length; i++) {
                         setStyle(el[i], {'width': value1 + '%'});
                     }
-            }
 
 
         }
