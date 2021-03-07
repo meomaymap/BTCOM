@@ -85,11 +85,18 @@ html, body {
 		}
 
 
-        .column {float: left; padding: 3vh; height: 25vh}
+        .column {float: left; padding: 3vh;}
         .row {padding-top:50px; padding-bottom: 40px;}
         .item {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             text-align: center;
+            
+            background-color: lightblue;
+        }
+
+        img {border-radius: 25%; padding: 0.2vw;}
+        .container {
+            background-color:lightcoral;
         }
 
 
@@ -153,6 +160,7 @@ html, body {
         var MinNumCol = 2;
         var NameClassCol = "column";
         var ww = screen.width;
+        var wi = window.innerWidth;
         var elem = document.documentElement;
         
         //Tạo thẻ link bằng js - 2
@@ -220,7 +228,8 @@ html, body {
                         setStyle(el[i], {'width': value1 + '%'});
                     }
             }
-	    for (j=MaxNumCol; j>MinNumCol; j--) {
+            
+            for (j=MaxNumCol; j>MinNumCol; j--) {
                 if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
                     var value = [100/j];
                     for (var i=0; i < el.length; i++) {
@@ -229,7 +238,11 @@ html, body {
                     j = MinNumCol;
                 }
             }
+
+
         }
+
+        
         
         function preventPullToRefresh(element) {
 			var prevent = false;
@@ -398,6 +411,9 @@ html, body {
 
     // Add a listener for when the window resizes
     window.addEventListener('resize', checkMediaQuery);
+
+
+
     
 
     ECN(NameClassCol,0).addEventListener("click", function(e) {
