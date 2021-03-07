@@ -207,7 +207,20 @@ html, body {
 
         function checkMediaQuery() {
             var el = ECN_Array(NameClassCol);   
-            for (j=MaxNumCol; j>MinNumCol; j--) {
+            if (wi <= 1680/2) {
+                    var value1 = 2*100/8;
+                    for (var i=0; i < el.length; i++) {
+                        setStyle(el[i], {'width': value1 + '%'});
+                    }
+            }
+
+            if (wi <= 1680/4) {
+                    var value1 = 4*100/8;
+                    for (var i=0; i < el.length; i++) {
+                        setStyle(el[i], {'width': value1 + '%'});
+                    }
+            }
+	    for (j=MaxNumCol; j>MinNumCol; j--) {
                 if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
                     var value = [100/j];
                     for (var i=0; i < el.length; i++) {
