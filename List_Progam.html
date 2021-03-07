@@ -405,7 +405,12 @@ html, body {
                 event.preventDefault()
         } 
     },{passive: false});
-        
+    
+    document.addEventListener("orientationchange", function(e){
+                e.preventDefault()
+                e.stopPropagation();
+    },false);	
+	
     preventPullToRefresh('html'); // pass #id or html tag into the method
 
     checkMediaQuery();
