@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1.0, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<meta charset="UTF-8">
 
@@ -85,19 +86,32 @@ html, body {
 		}
 
 
-        .column {float: left; padding: 3vh;}
+        .column {float: left; padding: 2vh;}
         .row {padding-top:50px; padding-bottom: 40px;}
         .item {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             text-align: center;
-            
+            height: 11vw;
             background-color: lightblue;
+            position: relative;
+            width: 100%;
         }
 
         img {border-radius: 25%; padding: 0.2vw;}
-        .container {
+        
+        .Q01a {
+            font-size:8vw;
+        }
+        .Q01b {
+            position: absolute;
+            height: 3vw;
+            bottom: 0px;
+            width: 100%;
+            font-size:0.8vw;
+            font-weight: bold;
             background-color:lightcoral;
         }
+
 
 
         .overlay {
@@ -214,36 +228,42 @@ html, body {
 
 
         function checkMediaQuery() {
-            var el = ECN_Array(NameClassCol);   
+            var el = ECN_Array(NameClassCol); 
+            var item_el =  ECN_Array("Q01a");
             for (j=MaxNumCol; j>MinNumCol; j--) {
                 if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
                     var value = [100/j];
                     for (var i=0; i < el.length; i++) {
                         setStyle(el[i], {'width': value[0] + '%'});
                     }
+                    
+                    var VQ01a = [8*(MaxNumCol/j)*(window.innerWidth/ww) +"vw"]
+                    for (var i=0; i < item_el.length; i++) {
+                        setStyle(item_el[i], {'font-size': VQ01a[0]});
+                    }
+                    
                     j = MinNumCol;
                 }
             }
 
             var value1;
+            var VQ01a1;
             ww = screen.width;
-            if (ww <= 1680/2) {
-                    value1 = 2*100/8;
-            }
-            
-            if (ww <= 1680/4) {
-                    value1 = 4*100/8;     
+            var col = [2,4];
+            for (k=0; k<col.length; k++) {
+                if (ww <= 1680/col[k]) {
+                    value1 = col[k]*100/MaxNumCol;
+                    VQ01a1 = 8*col[k];
+                }
             }
 
             for (var i=0; i < el.length; i++) {
-                        setStyle(el[i], {'width': value1 + '%'});
-                    }
-
-
+                setStyle(el[i], {'width': value1 + '%'});
+            }
             
-            
-
-
+            for (var i=0; i < item_el.length; i++) {
+                setStyle(item_el[i], {'font-size': VQ01a1 + "vw"});
+            }
         }
 
         
@@ -268,6 +288,8 @@ html, body {
                 }
 			});
 		  }
+
+          window.onbeforeunload = function() { return true; }
 
         //Disable get code
         //DISABLE RIGHT-CLICK
@@ -328,66 +350,50 @@ html, body {
         <div class="row">
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng đang hoàn thiện</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
             <div class="column">
                 <div class="item">
-                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
-                    <div class="container">
-                        <p>Mua hàng tiêu dùng</p>
-                    </div>
+                    <i class='fa fa-shopping-cart Q01a'></i>
+                    <div class="Q01b">Mua hàng tiêu dùng</div>
                 </div>
             </div>
         </div>
