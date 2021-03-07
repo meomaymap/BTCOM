@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1.0, initial-scale=1">
+
+	<meta charset="UTF-8">
+
+
+<style>
+
+/* disable pull to refresh, keeps glow effects */
+html, body {
+    font-family: Arial;
+  padding: 0px;
+  margin: 0px;
+  overscroll-behavior-y: contain; 
+}
+
+
+
+:root {
+			--parent-height-1: 5vh;
+		}
+		
+		* {
+            touch-action: manipulation;
+
+        }
+               
+
+        .module {
+            height: 100vh; /* Use vh as a fallback for browsers that do not support Custom Properties */
+            height: calc(var(--vh, 1vh) * 100);
+            margin: 0 auto;
+            max-width: 100%;
+            overflow: auto;
+            position: relative;
+			padding-bottom: var(--parent-height-1);
+        }
+
+        .module__item {
+            align-items: center;
+            display: flex;
+            height: 30vh;
+            justify-content: center;
+        }
+
+        .module__item:nth-child(odd) {
+            background-color: #fff;
+            color: #F73859;
+        }
+
+        .module__item:nth-child(even) {
+            background-color: #F73859;
+            color: #F1D08A;
+        }
+		
+		div.header {
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: var(--parent-height-1);
+			background-color: yellow;
+			color: black;
+			text-align: center;
+		}
+		
+		div.bottom {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			height: var(--parent-height-1);
+			background-color: green;
+			color: white;
+			text-align: center;
+		}
+		
+		div.sticky {
+			position: -webkit-sticky;
+			position: sticky;
+			top: var(--parent-height-1);
+
+		}
+
+
+        .column {float: left; padding: 3vh; height: 25vh}
+        .row {padding-top:50px; padding-bottom: 40px;}
+        .item {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+        }
+
+
+        .overlay {
+            height: 100vh;
+            width: 100vw;
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.9);
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 0%;
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+            margin-top: 30px;
+            margin: auto;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .overlay .closebtn:hover {
+            color: #ccc;
+        }
+
+        .iFrame_content {
+            width: 100vw;
+            height: calc(var(--vw, 1vw) * 100);
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+        }
+
+
+
+
+/* End Responsive Four Column Layout */
+
+</style>
+
+
+  
+
+</head>
+<body>
+	<script>
+        //Tạo dộ rộng cho cot khi độ rộng màn hình thay đổi
+        var MaxNumCol = 8;
+        var MinNumCol = 2;
+        var NameClassCol = "column";
+        var ww = screen.width;
+        var elem = document.documentElement;
+        
+        //Tạo thẻ link bằng js - 2
+        function loadjscssfile(filename, filetype){
+            if (filetype=="js"){ //if filename is a external JavaScript file
+                var fileref=document.createElement('script')
+                fileref.setAttribute("type","text/javascript")
+                fileref.setAttribute("src", filename)
+            }
+            else if (filetype=="css"){ //if filename is an external CSS file
+                var fileref=document.createElement("link")
+                fileref.setAttribute("rel", "stylesheet")
+                fileref.setAttribute("type", "text/css")
+                fileref.setAttribute("href", filename)
+            }
+            if (typeof fileref!="undefined")
+                document.getElementsByTagName("head")[0].appendChild(fileref)
+        }
+    
+        loadjscssfile("https://www.w3schools.com/w3css/4/w3.css", "css") ////dynamically load and add this .css file 
+        //kết thúc Tạo thẻ link bằng js -2
+
+
+        //Định nghĩa viết tắt cho element
+        function ECN(NameClass, pos) {return document.getElementsByClassName(NameClass)[pos];}
+        function ECN_Array(NameClass, pos) {return document.getElementsByClassName(NameClass);}
+        function ETN(NameTag, pos) {return document.getElementsByTagName(NameTag)[pos];}
+        function ETN_Array(NameTag, pos) {return document.getElementsByTagName(NameTag);}
+        function EN(Name, pos) {return document.getElementsByName(Name)[pos];}
+        function EN_Array(Name, pos) {return document.getElementsByName(Name);}
+        function EID(NameID) {return document.getElementById(NameID);}
+        // Kết thúc Định nghĩa viết tắt cho element
+
+        //set properties for object
+        function setStyle(el, propertyObject ) {
+            for (var property in propertyObject) {
+                el.style[property] = propertyObject[property];
+            }
+        }
+        //set properties for object
+
+        function displayWindowSize() {
+            //openFullscreen();
+            
+            // Get width and height of the window excluding scrollbars
+            // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+            let vh = window.innerHeight * 0.01;
+            // Then we set the value in the --vh custom property to the root of the document
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+
+        function checkMediaQuery() {
+            var el = ECN_Array(NameClassCol);   
+            for (j=MaxNumCol; j>MinNumCol; j--) {
+                if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
+                    var value = [100/j];
+                    for (var i=0; i < el.length; i++) {
+                        setStyle(el[i], {'width': value[0] + '%'});
+                    }
+                    j = MinNumCol;
+                }
+            }
+        }
+        
+        function preventPullToRefresh(element) {
+			var prevent = false;
+
+			document.querySelector(element).addEventListener('touchstart', function(e){
+                if (e.touches.length !== 1) { 
+                    openFullscreen();
+                    return; 
+                }
+
+                var scrollY = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+                prevent = (scrollY === 0);
+		    });
+
+			document.querySelector(element).addEventListener('touchmove', function(e){
+                if (prevent) {
+                    prevent = false;
+                    e.preventDefault();
+                }
+			});
+		  }
+
+        //Disable get code
+        //DISABLE RIGHT-CLICK
+        document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+        }, false);
+
+        //DISABLE “VIEW SOURCE” SHORTCUT KEY
+        document.addEventListener("keydown", function(e){
+        // USE THIS TO DISABLE CONTROL AND ALL FUNCTION KEYS
+        // if (e.ctrlKey || (e.keyCode>=112 && e.keyCode<=123)) {
+        // THIS WILL ONLY DISABLE CONTROL AND F12
+            if (e.ctrlKey || e.keyCode==123) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+        });
+
+        window.addEventListener("load",function() {
+            // Set a timeout...
+            setTimeout(function(){
+            // Hide the address bar!
+                window.scrollTo(0, 1);
+            }, 0);
+        });
+        //Disable get code
+
+        function openFullscreen() {
+			var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+			(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+			(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+			(document.msFullscreenElement && document.msFullscreenElement !== null);
+
+			if (!isInFullScreen) {
+				if (elem.requestFullscreen) {
+					elem.requestFullscreen();
+				} if (elem.mozRequestFullScreen) {
+					elem.mozRequestFullScreen();
+				} else if (elem.webkitRequestFullScreen) {
+				   elem.webkitRequestFullScreen();
+				} else if (elem.msRequestFullscreen) {
+					elem.msRequestFullscreen();
+				}
+			}
+        }
+
+    </script>
+
+<div id="myOverlay" class="overlay">
+  
+    <div class="overlay-content">
+      <iframe class="iFrame_content" id="myFrame" src="https://meomaymap.github.io/BTCOM/index.html"></iframe>
+    </div>
+  </div>
+    <div class="module">
+        <div class="header">Tiêu đề cố định</div>
+	    <div class="bottom">Footer cố định</div>
+        <div class="row">
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="item">
+                    <img src="https://storage.googleapis.com/ifarmer.vn/a/55f54f50f7784fc29fbe2a02bc529f07/s_1080x1080__trai-dua-loai-dac-biet-trong-luong-1-kg.webp" alt="Trái thơm" style="width:100%">
+                    <div class="container">
+                        <p>Mua hàng tiêu dùng</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+<script>
+    // Attaching the event listener function to window's resize event
+    window.addEventListener("resize", displayWindowSize);
+
+        // Calling the function for the first time
+    displayWindowSize();
+
+    document.addEventListener("touchstart", function(e){
+        if(event.touches.length > 1){
+                //the event is multi-touch
+                //you can then prevent the behavior
+                event.preventDefault()
+        } 
+    },{passive: false});
+        
+    preventPullToRefresh('html'); // pass #id or html tag into the method
+
+    checkMediaQuery();
+
+    // Add a listener for when the window resizes
+    window.addEventListener('resize', checkMediaQuery);
+    
+
+    ECN(NameClassCol,0).addEventListener("click", function(e) {
+        openSearch();
+    });
+
+
+    function openSearch() {
+        setStyle(EID("myOverlay"), {'display': 'block'});
+    }
+
+    function closeSearch() {
+        setStyle(EID("myOverlay"), {'display': 'none'});
+    }
+
+</script>
+
+</body>
+</html>
+
