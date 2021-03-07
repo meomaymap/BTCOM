@@ -86,12 +86,12 @@ html, body {
 		}
 
 
-        .column {float: left; /* padding: 1vw; */}
-        .row {/*padding-top:2vw; padding-bottom: 2vw; */}
+        .column {float: left;}
+
         .item {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             text-align: center;
-            /* height: 11vw; */
+
             background-color: lightblue;
             position: relative;
             width: 100%;
@@ -99,16 +99,10 @@ html, body {
 
         img {border-radius: 25%; padding: 0.2vw;}
         
-        .Q01a {
-            /*font-size:8vw;*/
 
-        }
         .Q01b {
             position: absolute;
-            /*
-            height: 3vw;
-            font-size:0.8vw;
-            */
+
             bottom: 0px;
             width: 100%;
             font-weight: bold;
@@ -232,7 +226,7 @@ html, body {
             // Get width and height of the window excluding scrollbars
             // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
             let vh = window.innerHeight * 0.01;
-            //let vw = window.innerHeight * 0.01;
+
 
             // Then we set the value in the --vh custom property to the root of the document
             document.documentElement.style.setProperty('--vh', `${vh}px`);
@@ -254,11 +248,11 @@ html, body {
 
                 if(mql.matches){
 
-                    setStyleAllClass(NameClassCol, {"padding-top":"8vw", "padding-bottom": "8vw"});
-                    setStyleAllClass(NameClassCol, {"width":"50%", "padding": "4vw"});
-                    setStyleAllClass("item", {"heigth":"88vw"});
+                    setStyleAllClass("row", {"padding-top":"8vw", "padding-bottom": "10vw"});
+                    setStyleAllClass(NameClassCol, {"width":"50%", "padding": "4vw", "height":"56vw"});
+                    setStyleAllClass("item", {"height":"44vw"});
                     setStyleAllClass("Q01a", {"font-size":"32vw"});
-                    setStyleAllClass("Q01b", {"heigth":"12vw","font-size":"3.2vw"});
+                    setStyleAllClass("Q01b", {"height":"12vw","font-size":"3.2vw"});
                 }
             }
         }
@@ -276,11 +270,11 @@ html, body {
             function checkMedia(mql){
 
                 if(mql.matches){
-                    setStyleAllClass(NameClassCol, {"padding-top":"4vw", "padding-bottom": "4vw"});
-                    setStyleAllClass(NameClassCol, {"width":"25%", "padding": "2vw"});
-                    setStyleAllClass("item", {"heigth":"44vw"});
+                    setStyleAllClass("row", {"padding-top":"4vw", "padding-bottom": "10vw"});
+                    setStyleAllClass(NameClassCol, {"width":"25%", "padding": "2vw", "height":"28vw"});
+                    setStyleAllClass("item", {"height":"22vw"});
                     setStyleAllClass("Q01a", {"font-size":"16vw"});
-                    setStyleAllClass("Q01b", {"heigth":"6vw","font-size":"1.6vw"});
+                    setStyleAllClass("Q01b", {"height":"6vw","font-size":"1.6vw"});
                 }
             }
         }
@@ -294,11 +288,11 @@ html, body {
             function checkMedia(mql){
                 if(mql.matches){
 
-                    setStyleAllClass(NameClassCol, {"padding-top":"2vh", "padding-bottom": "2vh"});
-                    setStyleAllClass(NameClassCol, {"width":"12.5%", "padding": "1vw"});
-                    setStyleAllClass("item", {"heigth":"25vh"});
+                    setStyleAllClass("row", {"padding-top":"5vh", "padding-bottom": "5vh"});
+                    setStyleAllClass(NameClassCol, {"width":"12.5%", "padding": "1vw", "height":"14vw"});
+                    setStyleAllClass("item", {"height":"11vw"});
                     setStyleAllClass("Q01a", {"font-size":"8vw"});
-                    setStyleAllClass("Q01b", {"heigth":"6vh","font-size":"0.8vw"});
+                    setStyleAllClass("Q01b", {"height":"3vw","font-size":"0.8vw"});
                 }
             }
         }
