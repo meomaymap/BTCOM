@@ -226,6 +226,7 @@ html, body {
             }
 
             var value1;
+            ww = screen.width;
             if (ww <= 1680/2) {
                     value1 = 2*100/8;
             }
@@ -237,6 +238,10 @@ html, body {
             for (var i=0; i < el.length; i++) {
                         setStyle(el[i], {'width': value1 + '%'});
                     }
+
+
+            
+            
 
 
         }
@@ -405,12 +410,13 @@ html, body {
                 event.preventDefault()
         } 
     },{passive: false});
-    
+
     document.addEventListener("orientationchange", function(e){
                 e.preventDefault()
                 e.stopPropagation();
-    },false);	
-	
+    },{passive: false});
+
+        
     preventPullToRefresh('html'); // pass #id or html tag into the method
 
     checkMediaQuery();
