@@ -86,7 +86,7 @@ html, body {
 		}
 
 
-        .column {float: left; padding: 2vh;}
+        .column {float: left; padding: 1vw;}
         .row {padding-top:50px; padding-bottom: 40px;}
         .item {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -100,7 +100,8 @@ html, body {
         img {border-radius: 25%; padding: 0.2vw;}
         
         .Q01a {
-            font-size:8vw;
+            /*font-size:8vw;*/
+            font-size: 8vw;
         }
         .Q01b {
             position: absolute;
@@ -151,7 +152,7 @@ html, body {
 
         .iFrame_content {
             width: 100vw;
-            height: calc(var(--vw, 1vw) * 100);
+            width: calc(var(--vw, 1vw) * 100);
             height: 100vh;
             height: calc(var(--vh, 1vh) * 100);
         }
@@ -222,52 +223,55 @@ html, body {
             // Get width and height of the window excluding scrollbars
             // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
             let vh = window.innerHeight * 0.01;
+            let vw = window.innerHeight * 0.01;
+
             // Then we set the value in the --vh custom property to the root of the document
             document.documentElement.style.setProperty('--vh', `${vh}px`);
+            document.documentElement.style.setProperty('--vw', `${vw}px`);
         }
 
 
         function checkMediaQuery() {
             var el = ECN_Array(NameClassCol); 
-            var item_el =  ECN_Array("Q01a");
+            var item_el1 =  ECN_Array("Q01a");
+            var item_el2 =  ECN_Array("Q01b");
             for (j=MaxNumCol; j>MinNumCol; j--) {
                 if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
                     var value = [100/j];
                     for (var i=0; i < el.length; i++) {
-                        setStyle(el[i], {'width': value[0] + '%'});
+                       setStyle(el[i], {'width': value[0] + '%'});
                     }
-                    
-                    var VQ01a = [8*(MaxNumCol/j)*(window.innerWidth/ww) +"vw"]
-                    for (var i=0; i < item_el.length; i++) {
-                        setStyle(item_el[i], {'font-size': VQ01a[0]});
+                    //setStyleAllClass (el,"width",value[0] + '%');
+
+                    var VQ01a1 = [8*(MaxNumCol/j)*(window.innerWidth/ww)];
+                    for (var i=0; i < item_el1.length; i++) {
+                        setStyle(item_el1[i], {'font-size': VQ01a1[0] + "vw"});
                     }
+
+                    //setStyleAllClass (item_el,"font-size",VQ01a[0] + "vw");
                     
+                    //var VQ01a2 = [0.8*(window.innerWidth/j),
+                    //            3*(window.innerWidth/j)];
+                    //for (var i=0; i < item_el1.length; i++) {
+                    //    setStyle(item_el1[i], {'font-size': VQ01a2[0], 'height': VQ01a2[1]});
+                    //}
                     j = MinNumCol;
                 }
             }
 
-            var value1;
-            var VQ01a1;
-            ww = screen.width;
+            //ww = screen.width;
             var col = [2,4];
             for (k=0; k<col.length; k++) {
                 if (ww <= 1680/col[k]) {
-                    setStyleAllClass (el,"width",col[k]*100/MaxNumCol + '%');
-                    setStyleAllClass (el,"font-size",8*col[k] + "vw");
+                    for (var i=0; i < el.length; i++) {
+                       setStyle(el[i], {'width': col[k]*100/MaxNumCol + '%'});
+                    }
+
                 }
             }
 
-
-            
-            
-
         }
 
-        function setStyleAllClass (el,x1,x2) {
-            for (var i=0; i < el.length; i++) {
-                setStyle(el[i], {x1: x2});
-            }
-        }
         
         function preventPullToRefresh(element) {
 			var prevent = false;
