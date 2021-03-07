@@ -86,12 +86,12 @@ html, body {
 		}
 
 
-        .column {float: left; padding: 1vw;}
-        .row {padding-top:50px; padding-bottom: 40px;}
+        .column {float: left; /* padding: 1vw; */}
+        .row {/*padding-top:2vw; padding-bottom: 2vw; */}
         .item {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             text-align: center;
-            height: 11vw;
+            /* height: 11vw; */
             background-color: lightblue;
             position: relative;
             width: 100%;
@@ -101,14 +101,16 @@ html, body {
         
         .Q01a {
             /*font-size:8vw;*/
-            font-size: 8vw;
+
         }
         .Q01b {
             position: absolute;
+            /*
             height: 3vw;
+            font-size:0.8vw;
+            */
             bottom: 0px;
             width: 100%;
-            font-size:0.8vw;
             font-weight: bold;
             background-color:lightcoral;
         }
@@ -215,6 +217,13 @@ html, body {
                 el.style[property] = propertyObject[property];
             }
         }
+        function setStyleAllClass(NameClass, propertyObject) {
+            var el = ECN_Array(NameClass)
+            for (i=0; i<el.length;i++) {
+                setStyle(el[i], propertyObject);
+            }
+
+        }
         //set properties for object
 
         function displayWindowSize() {
@@ -223,56 +232,78 @@ html, body {
             // Get width and height of the window excluding scrollbars
             // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
             let vh = window.innerHeight * 0.01;
-            let vw = window.innerHeight * 0.01;
+            //let vw = window.innerHeight * 0.01;
 
             // Then we set the value in the --vh custom property to the root of the document
             document.documentElement.style.setProperty('--vh', `${vh}px`);
-            document.documentElement.style.setProperty('--vw', `${vw}px`);
+            //document.documentElement.style.setProperty('--vw', `${vw}px`);
+            mobile();
+            tablet();
+            desktop();
         }
 
+        mobile();
+        function mobile(){
 
-        function checkMediaQuery() {
-            var el = ECN_Array(NameClassCol); 
-            var item_el1 =  ECN_Array("Q01a");
-            var item_el2 =  ECN_Array("Q01b");
-            for (j=MaxNumCol; j>MinNumCol; j--) {
-                if (window.innerWidth > (ww/MaxNumCol)*(j-1 + 1/10)) {
-                    var value = [100/j];
-                    for (var i=0; i < el.length; i++) {
-                       setStyle(el[i], {'width': value[0] + '%'});
-                    }
-                    //setStyleAllClass (el,"width",value[0] + '%');
+            const mql = window.matchMedia('screen and (max-width: 575px)');
 
-                    var VQ01a1 = [8*(MaxNumCol/j)*(window.innerWidth/ww)];
-                    for (var i=0; i < item_el1.length; i++) {
-                        setStyle(item_el1[i], {'font-size': VQ01a1[0] + "vw"});
-                    }
+            checkMedia(mql);
+            mql.addListener(checkMedia);
 
-                    //setStyleAllClass (item_el,"font-size",VQ01a[0] + "vw");
-                    
-                    //var VQ01a2 = [0.8*(window.innerWidth/j),
-                    //            3*(window.innerWidth/j)];
-                    //for (var i=0; i < item_el1.length; i++) {
-                    //    setStyle(item_el1[i], {'font-size': VQ01a2[0], 'height': VQ01a2[1]});
-                    //}
-                    j = MinNumCol;
+            function checkMedia(mql){
+
+                if(mql.matches){
+
+                    setStyleAllClass(NameClassCol, {"padding-top":"8vw", "padding-bottom": "8vw"});
+                    setStyleAllClass(NameClassCol, {"width":"50%", "padding": "4vw"});
+                    setStyleAllClass("item", {"heigth":"88vw"});
+                    setStyleAllClass("Q01a", {"font-size":"32vw"});
+                    setStyleAllClass("Q01b", {"heigth":"12vw","font-size":"3.2vw"});
                 }
             }
-
-            //ww = screen.width;
-            var col = [2,4];
-            for (k=0; k<col.length; k++) {
-                if (ww <= 1680/col[k]) {
-                    for (var i=0; i < el.length; i++) {
-                       setStyle(el[i], {'width': col[k]*100/MaxNumCol + '%'});
-                    }
-
-                }
-            }
-
         }
 
         
+
+        tablet();
+        function tablet(){
+
+            const mql = window.matchMedia('screen and (min-width: 576px) and (max-width: 991px)');
+
+            checkMedia(mql);
+            mql.addListener(checkMedia);
+
+            function checkMedia(mql){
+
+                if(mql.matches){
+                    setStyleAllClass(NameClassCol, {"padding-top":"4vw", "padding-bottom": "4vw"});
+                    setStyleAllClass(NameClassCol, {"width":"25%", "padding": "2vw"});
+                    setStyleAllClass("item", {"heigth":"44vw"});
+                    setStyleAllClass("Q01a", {"font-size":"16vw"});
+                    setStyleAllClass("Q01b", {"heigth":"6vw","font-size":"1.6vw"});
+                }
+            }
+        }
+
+
+        desktop();
+        function desktop(){
+            const mql = window.matchMedia('screen and (min-width: 992px)');
+            checkMedia(mql);
+            mql.addListener(checkMedia);
+            function checkMedia(mql){
+                if(mql.matches){
+
+                    setStyleAllClass(NameClassCol, {"padding-top":"2vh", "padding-bottom": "2vh"});
+                    setStyleAllClass(NameClassCol, {"width":"12.5%", "padding": "1vw"});
+                    setStyleAllClass("item", {"heigth":"25vh"});
+                    setStyleAllClass("Q01a", {"font-size":"8vw"});
+                    setStyleAllClass("Q01b", {"heigth":"6vh","font-size":"0.8vw"});
+                }
+            }
+        }
+
+       
         function preventPullToRefresh(element) {
 			var prevent = false;
 
@@ -430,14 +461,7 @@ html, body {
         
     preventPullToRefresh('html'); // pass #id or html tag into the method
 
-    checkMediaQuery();
-
-    // Add a listener for when the window resizes
-    window.addEventListener('resize', checkMediaQuery);
-
-
-
-    
+ 
 
     ECN(NameClassCol,0).addEventListener("click", function(e) {
         openSearch();
