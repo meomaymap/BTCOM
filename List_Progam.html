@@ -3,6 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1.0, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 	<meta charset="UTF-8">
 
@@ -127,6 +128,19 @@ html, body {
             left: 0;
             background-color: rgb(0,0,0);
             background-color: rgba(0,0,0, 0.9);
+            z-index: 2;
+        }
+
+        .Loading {
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0, 0.9);
+            z-index: 2;
         }
 
         .overlay-content {
@@ -139,17 +153,51 @@ html, body {
             margin: auto;
         }
 
-        .overlay .closebtn {
+        .Loading-content {
+            position: relative;
+            top: 0%;
+            left: 0%;
+            height: 100vh;
+            width: 100vw;
+            text-align: center;
+        }
+
+        .closebtn {
             position: absolute;
-            top: 20px;
-            right: 45px;
-            font-size: 60px;
+            top: -5px;
+            right: 20px;
+            font-size: 30px;
             cursor: pointer;
-            color: white;
+            color: black;
         }
 
         .overlay .closebtn:hover {
             color: #ccc;
+        }
+
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+            }
+
+            /* Safari */
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .iFrame_content {
@@ -174,10 +222,16 @@ html, body {
 <body>
 
 
+    
+    <div id="myLoading" class="Loading">
+        <div class="Loading-content">
+            <div class="loader"></div>
+        </div>
+    </div>
     <div id="myOverlay" class="overlay">
-  
         <div class="overlay-content">
-        <iframe class="iFrame_content" id="myFrame" src="https://meomaymap.github.io/BTCOM"></iframe>
+            <a class="closebtn" onclick="closeSearch()">&times;</a>    
+            <iframe class="iFrame_content" id="myFrame" src=""></iframe>
         </div>
     </div>
     <div class="module">
@@ -229,7 +283,9 @@ var MaxNumCol = 8;
         var elem = document.documentElement;
         var DisplaySize = [[992, 576, 1], 
                            [5000,991,575]];     //desktop, tablet, Mobile
-		
+
+		//var myVar;
+        
         //Định nghĩa viết tắt cho element
         function ECN(NameClass, pos) {return document.getElementsByClassName(NameClass)[pos];}
         function ECN_Array(NameClass, pos) {return document.getElementsByClassName(NameClass);}
@@ -296,7 +352,51 @@ var MaxNumCol = 8;
 
         }
 
+
         function NapData() {
+            
+            //myVar = setTimeout(function(){ setStyle(EID("myLoading"), {'display': 'block'}); }, 0);
+            //setTimeout(function(){ setStyle(EID("myLoading"), {'display': 'block'}); }, 0);
+            
+            
+            var script_url = "https://script.google.com/macros/s/AKfycbx4mSzVI2d7vXr-I8b503ct7zm0iBRFyUObAqBuHWxpacmErLM/exec";
+            
+            var url = script_url+"?";
+                url = url + "action" + "=" + "Import_ListProgram";
+                url = url + "&" + "url" + "=" + window.location.href;
+                url = url + "&" + "dk" + "=" + 1;
+            $.getJSON(url, function (json) {
+                for (var i = 0; i < json.records.length; i++) {
+                    var x = document.getElementsByClassName("row")[0];
+                    
+                    var node = document.createElement("div");
+                    x.appendChild(node);
+                    node.setAttribute('class', "column");
+                    node.setAttribute('onclick', "openProgram(this)");
+                    
+
+                    var x = node;
+                    var node = document.createElement("div");
+                    x.appendChild(node);
+                    node.setAttribute('class', "item");
+
+                    var x = node;
+                    var node = document.createElement("i");
+                    x.appendChild(node);
+                    node.setAttribute('class', json.records[i].Col5 + " " + "Q01a");
+
+                    var node = document.createElement("div");
+                    x.appendChild(node);
+                    node.setAttribute('class', "Q01b");
+                    node.innerHTML = json.records[i].Col4;
+                }               
+
+                displayWindowSize();
+                //openFullscreen();
+                setStyle(EID("myLoading"), {'display': 'none'});
+            });
+            
+            /*
             var data = [
                         ["column", "item", "fa fa-shopping-cart", "Q01a","Q01b", "Mua hàng tiêu dùng đang hoàn thiện 1"],
                         ["column", "item", "fa fa-shopping-cart", "Q01a","Q01b", "Mua hàng tiêu dùng đang hoàn thiện"],
@@ -317,8 +417,6 @@ var MaxNumCol = 8;
                 x.appendChild(node);
                 node.setAttribute('class', data[i][0]);
 
-
-
                 var x = node;
                 var node = document.createElement("div");
                 x.appendChild(node);
@@ -334,10 +432,19 @@ var MaxNumCol = 8;
                 node.setAttribute('class', data[i][4]);
                 node.innerHTML = data[i][5];
             }
+
+            */
+
+
+            //EID("myFrame").src ="https://meomaymap.github.io/BTCOM" ;
+
+            //setStyle(EID("myLoading"), {'display': 'none'});
+            //setTimeout(function(){ setStyle(EID("myLoading"), {'display': 'none'}); }, 3000);
 			
         }
+
+
         
-        AllDevice();
         function AllDevice() {
             const mql = window.matchMedia(SizeChange);
 
@@ -357,6 +464,7 @@ var MaxNumCol = 8;
                 }
             }
         }
+        AllDevice();
        
         function preventPullToRefresh(element) {
 			var prevent = false;
@@ -404,6 +512,8 @@ var MaxNumCol = 8;
             // Hide the address bar!
                 window.scrollTo(0, 1);
             }, 0);
+
+            
         });
         //Disable get code
 
@@ -430,8 +540,7 @@ var MaxNumCol = 8;
     // Attaching the event listener function to window's resize event
     window.addEventListener("resize", displayWindowSize);
 
-        // Calling the function for the first time
-    displayWindowSize();
+    
 
     document.addEventListener("touchstart", function(e){
         if(event.touches.length > 1){
@@ -447,19 +556,58 @@ var MaxNumCol = 8;
         
     preventPullToRefresh('html'); // pass #id or html tag into the method
 
- 
 
+    /*
     ECN(NameClassCol,0).addEventListener("click", function(e) {
         openSearch();
     });
+    */
 
+    function GetElement(elmnt, data) {
+			//var el = document.getElementById(elmnt);
+        var el = elmnt;
+		for (var i = 0; i < data.length; i++) {
+			var el = el.children[data[i]-1];				
+		}	
+		return el;
+	}
 
-    function openSearch() {
-        setStyle(EID("myOverlay"), {'display': 'block'});
+    function openProgram(elmnt) {
+        setStyle(EID("myLoading"), {'display': 'block'});
+
+        
+        var script_url = "https://script.google.com/macros/s/AKfycbx4mSzVI2d7vXr-I8b503ct7zm0iBRFyUObAqBuHWxpacmErLM/exec";
+            
+            var url = script_url+"?";
+                url = url + "action" + "=" + "Condition";
+                url = url + "&" + "url" + "=" + window.location.href;
+                url = url + "&" + "dk" + "=" + GetElement(elmnt,[1,2]).innerHTML;
+
+            var link = "none";
+            $.getJSON(url, function (json) {
+
+                for (var i = 0; i < json.records.length; i++) {
+                    if( json.records[i].Col4 == GetElement(elmnt,[1,2]).innerHTML) {
+                        link = json.records[i].Col2 ;
+                        break;
+                    }
+                }        
+
+                setStyle(EID("myLoading"), {'display': 'none'});
+
+                if (link != "none" && link !="") {
+                    EID("myFrame").src = link;
+                    setStyle(EID("myOverlay"), {'display': 'block'});
+                } else {
+                    alert("Hiện chương trình này đang bảo trì, làm ơn chạy lại sau 15 phút nữa");
+
+                }
+        });       
     }
 
     function closeSearch() {
         setStyle(EID("myOverlay"), {'display': 'none'});
+        EID("myFrame").src ="" ;
     }        
 
 </script>
